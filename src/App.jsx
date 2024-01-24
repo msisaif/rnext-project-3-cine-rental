@@ -1,8 +1,16 @@
+import Footer from "./Footer";
+import Header from "./Header";
+import Page from "./Page";
+
 function App() {
   return (
-    <>
-      <h1 className="text-center text-5xl underline">Hello</h1>
-    </>
+    <div className="dark">
+      <div className="bg-white text-dark dark:bg-body dark:text-white">
+        <Header />
+        <Page />
+        <Footer />
+      </div>
+    </div>
   );
 }
 
