@@ -1,7 +1,8 @@
-import checkoutIcon from "./../assets/icons/checkout.svg";
 import CartItem from "./CartItem";
+import CheckoutButton from "./CheckoutButton";
+import ModalCloseButton from "./ModalCloseButton";
 
-export default function CartModal({ onCancel }) {
+export default function CartModal({ onCancel, cartMovies, onRemoveFromCart }) {
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -10,30 +11,23 @@ export default function CartModal({ onCancel }) {
             <h2 className="text-2xl lg:text-[30px] mb-10 font-bold">
               Your Carts
             </h2>
-            <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
-              <CartItem />
-              <CartItem />
-            </div>
+            {cartMovies.length ? (
+              <div className="space-y-8 lg:space-y-12 max-h-[450px] overflow-auto mb-10 lg:mb-14">
+                {cartMovies.map((cartMovie) => (
+                  <CartItem
+                    key={cartMovie.id}
+                    movie={cartMovie}
+                    onRemoveFromCart={onRemoveFromCart}
+                  />
+                ))}
+              </div>
+            ) : (
+              <p className="text-rose-500 text-xl">Cart is empty</p>
+            )}
+
             <div className="flex items-center justify-end gap-2">
-              <a
-                className="rounded-md p-2 md:px-4 inline-flex items-center space-x-2 bg-primary text-[#171923] text-sm"
-                href="#"
-              >
-                <img
-                  src={checkoutIcon}
-                  width="24"
-                  height="24"
-                  alt="Checkout Icon"
-                />
-                <span>Checkout</span>
-              </a>
-              <a
-                className="border border-[#74766F] rounded-lg py-2 px-5 flex items-center justify-center gap-2 text-[#6F6F6F] dark:text-gray-200 font-semibold text-sm"
-                href="#"
-                onClick={onCancel}
-              >
-                Cancel
-              </a>
+              <CheckoutButton />
+              <ModalCloseButton onClose={onCancel} />
             </div>
           </div>
         </div>
