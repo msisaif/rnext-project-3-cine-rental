@@ -2,9 +2,11 @@ export default function cartMoviesReducer(cartMovies, action) {
   switch (action.type) {
     case "ADD_TO_CART": {
       if (cartMovies.find((cartMovie) => cartMovie.id === action.payload.id)) {
-        return console.error(
+        console.error(
           `The movie ${action.payload.title} has been added to the cart already`
         );
+
+        return [...cartMovies];
       }
 
       return [...cartMovies, action.payload];
