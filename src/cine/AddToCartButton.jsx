@@ -1,19 +1,24 @@
 import { useContext } from "react";
+import { toast } from "react-toastify";
 import { CartMoviesContext } from "../contexts/CartMoviesContext";
 import tagIcon from "./../assets/tag.svg";
 
 export default function AddToCartButton({ movie }) {
-  const { dispatch } = useContext(CartMoviesContext);
+  const { cartMovies, dispatch } = useContext(CartMoviesContext);
 
   function handleAddToCart(e, movie) {
     e.stopPropagation();
 
-    console.log(movie);
+    if (cartMovies.find((cartMovie) => cartMovie.id === movie.id)) {
+      return toast.error(`"${movie.title}" already added to cart !`);
+    }
 
     dispatch({
       type: "ADD_TO_CART",
       payload: movie,
     });
+
+    toast.success(`Added "${movie.title}" to Cart !`);
   }
 
   return (

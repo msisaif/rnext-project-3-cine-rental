@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { toast } from "react-toastify";
 import { CartMoviesContext } from "../contexts/CartMoviesContext";
 import MovieCoverImage from "./MovieCoverImage";
 import RemoveButton from "./RemoveButton";
@@ -26,6 +27,8 @@ export default function CartItem({ movie }) {
                 type: "REMOVE_FROM_CART",
                 payload: movie,
               });
+
+              toast.success(`Removed ${movie.title} from Cart !`);
             }}
           />
         </div>
