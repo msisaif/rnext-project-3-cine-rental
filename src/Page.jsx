@@ -1,24 +1,25 @@
-import { useState } from "react";
+import { useReducer } from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import MovieGrid from "./cine/MovieGrid";
 import SideBar from "./cine/SideBar";
+import cartMoviesReducer from "./reducers/cartMoviesReducer";
 
 export default function Page({ isDarkMode, onChangeMode }) {
-  const [cartMovies, setCartMovies] = useState([]);
+  const [cartMovies, dispatch] = useReducer(cartMoviesReducer, []);
 
   function handleAddToCart(movie) {
-    if (cartMovies.find((cartMovie) => cartMovie.id === movie.id)) {
-      return console.error(
-        `The movie ${movie.title} has been added to the cart already`
-      );
-    }
-
-    return setCartMovies([...cartMovies, movie]);
+    return dispatch({
+      type: "ADD_TO_CART",
+      payload: movie,
+    });
   }
 
   function handleRemoveFromCart(movie) {
-    setCartMovies(cartMovies.filter((cartMovie) => cartMovie.id !== movie.id));
+    return dispatch({
+      type: "REMOVE_FROM_CART",
+      payload: movie,
+    });
   }
 
   return (
