@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { CartMoviesContext } from "../contexts/CartMoviesContext";
 import CartItem from "./CartItem";
 import CheckoutButton from "./CheckoutButton";
 import ModalCloseButton from "./ModalCloseButton";
 
-export default function CartModal({ onCancel, cartMovies, onRemoveFromCart }) {
+export default function CartModal({ onCancel }) {
+  const { cartMovies } = useContext(CartMoviesContext);
+
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -17,7 +21,6 @@ export default function CartModal({ onCancel, cartMovies, onRemoveFromCart }) {
                   <CartItem
                     key={cartMovie.id}
                     movie={cartMovie}
-                    onRemoveFromCart={onRemoveFromCart}
                   />
                 ))}
               </div>

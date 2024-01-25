@@ -1,7 +1,11 @@
+import { useContext } from "react";
+import { CartMoviesContext } from "../contexts/CartMoviesContext";
 import MovieCoverImage from "./MovieCoverImage";
 import RemoveButton from "./RemoveButton";
 
-export default function CartItem({ movie, onRemoveFromCart }) {
+export default function CartItem({ movie }) {
+  const { dispatch } = useContext(CartMoviesContext);
+
   return (
     <>
       <div className="grid grid-cols-[1fr_auto] gap-4">
@@ -18,7 +22,10 @@ export default function CartItem({ movie, onRemoveFromCart }) {
         <div className="flex justify-between gap-4 items-center">
           <RemoveButton
             onRemove={() => {
-              onRemoveFromCart(movie);
+              dispatch({
+                type: "REMOVE_FROM_CART",
+                payload: movie,
+              });
             }}
           />
         </div>

@@ -2,7 +2,7 @@ import AddToCartButton from "./AddToCartButton.jsx";
 import MovieCoverImage from "./MovieCoverImage.jsx";
 import Rating from "./Rating";
 
-export default function MovieCard({ onShowDetails, movie, onAddToCart }) {
+export default function MovieCard({ onShowDetails, movie }) {
   return (
     <>
       <figure
@@ -16,7 +16,7 @@ export default function MovieCard({ onShowDetails, movie, onAddToCart }) {
           <div className="flex items-center space-x-1 mb-5">
             <Rating value={movie.rating} />
           </div>
-          <AddToCartButton onAddToCart={onAddToCart} movie={movie} />
+          <AddToCartButton movie={movie} />
         </figcaption>
       </figure>
     </>

@@ -3,7 +3,7 @@ import { getAllMovies } from "./../data/movies.js";
 import MovieCard from "./MovieCard";
 import MovieDetailsModal from "./MovieDetailsModal";
 
-export default function MovieGrid({ onAddToCart }) {
+export default function MovieGrid() {
   const [showMovie, setShowMovie] = useState(null);
 
   const movies = getAllMovies();
@@ -14,7 +14,6 @@ export default function MovieGrid({ onAddToCart }) {
         <MovieDetailsModal
           movie={showMovie}
           onCancel={() => setShowMovie(null)}
-          onAddToCart={onAddToCart}
         />
       )}
       <div className="content">
@@ -24,7 +23,6 @@ export default function MovieGrid({ onAddToCart }) {
               key={movie.id}
               movie={movie}
               onShowDetails={() => setShowMovie(movie)}
-              onAddToCart={onAddToCart}
             />
           ))}
         </div>

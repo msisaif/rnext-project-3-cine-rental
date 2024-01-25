@@ -1,12 +1,19 @@
+import { useContext } from "react";
+import { CartMoviesContext } from "../contexts/CartMoviesContext";
 import tagIcon from "./../assets/tag.svg";
 
-export default function AddToCartButton({ movie, onAddToCart }) {
+export default function AddToCartButton({ movie }) {
+  const { dispatch } = useContext(CartMoviesContext);
+
   function handleAddToCart(e, movie) {
     e.stopPropagation();
 
     console.log(movie);
 
-    onAddToCart(movie);
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: movie,
+    });
   }
 
   return (

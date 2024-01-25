@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Page from "./Page";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
@@ -7,10 +8,9 @@ function App() {
   return (
     <div className={isDarkMode ? "dark" : ""}>
       <div className="bg-white text-dark dark:bg-body dark:text-white">
-        <Page
-          isDarkMode={isDarkMode}
-          onChangeMode={() => setIsDarkMode(!isDarkMode)}
-        />
+        <ThemeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+          <Page />
+        </ThemeContext.Provider>
       </div>
     </div>
   );

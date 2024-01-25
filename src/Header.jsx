@@ -1,25 +1,21 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "./assets/logo.svg";
 import ring from "./assets/ring.svg";
 import CartModal from "./cine/CartModal";
 import CartModalToggleButton from "./cine/CartModalToggleButton";
 import ThemeModeToggle from "./cine/ThemeModeToggle";
+import { CartMoviesContext } from "./contexts/CartMoviesContext";
 
-export default function Header({
-  isDarkMode,
-  onChangeMode,
-  cartMovies,
-  onRemoveFromCart,
-}) {
+export default function Header() {
   const [showModal, setShowModal] = useState(false);
+
+  const { cartMovies } = useContext(CartMoviesContext);
 
   return (
     <>
       {showModal && (
         <CartModal
           onCancel={() => setShowModal(false)}
-          cartMovies={cartMovies}
-          onRemoveFromCart={onRemoveFromCart}
         />
       )}
       <header>
@@ -38,10 +34,7 @@ export default function Header({
               </a>
             </li>
             <li>
-              <ThemeModeToggle
-                isDarkMode={isDarkMode}
-                onChangeMode={onChangeMode}
-              />
+              <ThemeModeToggle />
             </li>
             <li className="relative">
               {cartMovies.length > 0 && (

@@ -3,7 +3,7 @@ import ModalCloseButton from "./ModalCloseButton";
 import MovieCoverImage from "./MovieCoverImage";
 import Rating from "./Rating";
 
-export default function MovieDetailsModal({ movie, onCancel, onAddToCart }) {
+export default function MovieDetailsModal({ movie, onCancel }) {
   return (
     <>
       <div className="fixed top-0 left-0 w-screen h-screen z-50 bg-black/60 backdrop-blur-sm">
@@ -28,7 +28,7 @@ export default function MovieDetailsModal({ movie, onCancel, onAddToCart }) {
                 {movie.description}
               </p>
               <div className="grid lg:grid-cols-2 gap-2">
-                <AddToCartButton movie={movie} onAddToCart={onAddToCart} />
+                <AddToCartButton movie={movie} />
                 <ModalCloseButton onClose={onCancel} />
               </div>
             </div>
